@@ -27,30 +27,31 @@ class LargestPrime {
         // }
 
         tailrec fun generateListOfPrimes(
-            runningEndValue: Long = number,
+            dividend: Long = number,
             primes: List<Long> = listOf(1),
-            newPossiblePrime: Long =1L
+            newPossiblePrime: Long = 1L
         ): List<Long> =
-            if (runningEndValue != 1L) {
+            if (dividend >= 2L) {
                 println(primes)
-                println(runningEndValue)
+                println(dividend)
 
                 val lastPrime = primes.last()
                 val increment = if (lastPrime == 2L) 1L else 2L
 
-                val newPossiblePrime2 = Math.max(newPossiblePrime, primes.last()) + increment
+                val divisor = Math.max(newPossiblePrime, primes.last()) + increment
 
-                if (runningEndValue % newPossiblePrime2 == 0L && checkIfPrime(newPossiblePrime2)) {
+                if (dividend % divisor == 0L && checkIfPrime(divisor)) {
                     generateListOfPrimes(
-                        runningEndValue / newPossiblePrime2,
-                        primes + newPossiblePrime2,
-                        newPossiblePrime2
+                        dividend / divisor,
+                        primes + divisor,
+                        divisor
                     )
                 } else {
-                    primes
+                    generateListOfPrimes(
+                        dividend, primes, divisor
+                    )
                 }
             } else {
-                // runningEndValue
                 primes
             }
 

@@ -21,6 +21,13 @@ class LargestPrimeTest {
         assertEquals(6857, answer)
     }
 
+    @Test
+    fun `largest prime of 288 is ???`() {
+        val answer = largestPrime.findLargestPrime(8)
+
+        assertEquals(6857, answer)
+    }
+
 
     @Test
     fun `2 is a prime`(){
